@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { getUserInfo } from '../../api/user';
+const user = getUserInfo();
+
 import axios from '../../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +30,13 @@ export default function AgentDashboard() {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Agent Dashboard</h1>
+      {user && (
+  <div className="mb-4 text-sm text-right text-gray-600">
+    Logged in as <b>{user.email}</b> (<span className="bg-gray-200 px-2 py-1 rounded">{user.role}</span>)
+  </div>
+)}
+
+  <h1 className="text-xl font-bold mb-4">Agent Dashboard</h1>
       <ul className="space-y-4">
         {tickets.map((t: any) => (
           <li key={t.id} className="border p-4 rounded shadow-sm">
