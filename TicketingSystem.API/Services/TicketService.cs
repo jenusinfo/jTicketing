@@ -12,7 +12,7 @@ public class TicketService : ITicketService
         var orgId = int.Parse(user.FindFirst("OrgId").Value);
         return await _context.Tickets
             .Where(t => t.OrganizationId == orgId)
-            .Select(t => new { t.Id, t.Title, t.Status, t.Priority })
+            .Select(t => new { t.Id, t.Title, t.Status, t.Priority, t.AssignedToId })
             .ToListAsync();
     }
 
@@ -39,6 +39,27 @@ public class TicketService : ITicketService
         var orgId = int.Parse(user.FindFirst("OrgId").Value);
         return await _context.Tickets
             .Where(t => t.OrganizationId == orgId && t.Id == id)
+            .Include(t => t.Comments)
+            .ThenInclude(c => c.User)
             .FirstOrDefaultAsync();
+    }
+
+    public async Task<object> AssignTicketAsync(int ticketId, ClaimsPrincipal user)
+    {
+        var userId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier).Value);
+        var ticket = await _context.Tickets.FindAsync(ticketId);
+        if (ticket == null) throw new Exception("Ticket not found");
+        ticket.AssignedToId = userId;
+        await _context.SaveChangesAsync();
+        return ticket;
+    }
+
+    public async Task<object> ChangeTicketStatusAsync(int ticketId, string newStatus, ClaimsPrincipal user)
+    {
+        var ticket = await _context.Tickets.FindAsync(ticketId);
+        if (ticket == null) throw new Exception("Ticket not found");
+        ticket.Status = newStatus;
+        await _context.SaveChangesAsync();
+        return ticket;
     }
 }
