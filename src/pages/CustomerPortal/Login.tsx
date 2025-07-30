@@ -2,6 +2,14 @@ import { useState } from 'react';
 import axios from '../../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
+function parseJwt(token: string): any {
+  try {
+    return JSON.parse(atob(token.split('.')[1]));
+  } catch (e) {
+    return null;
+  }
+}
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,8 +19,12 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await axios.post('/auth/login', { email, password });
-      localStorage.setItem('token', res.data);
-      navigate('/dashboard');
+      const token = res.data;
+      localStorage.setItem('token', token);
+
+      const payload = parseJwt(token);
+      if (payload?.role === 'Agent') navigate('/agent-dashboard');
+      else navigate('/dashboard');
     } catch {
       alert('Invalid login');
     }
