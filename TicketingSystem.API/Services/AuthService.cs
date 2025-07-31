@@ -1,3 +1,8 @@
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
+
 public class AuthService : IAuthService
 {
     private readonly AppDbContext _context;
