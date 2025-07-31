@@ -18,4 +18,13 @@ public class TicketsController : ControllerBase
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id) => Ok(await _ticketService.GetTicketByIdAsync(id, User));
+
+    [HttpPost("{id}/assign")]
+    [Authorize(Roles = "Agent")]
+    public async Task<IActionResult> Assign(int id) => Ok(await _ticketService.AssignTicketAsync(id, User));
+
+    [HttpPost("{id}/status")]
+    [Authorize(Roles = "Agent")]
+    public async Task<IActionResult> ChangeStatus(int id, [FromQuery] string status) =>
+        Ok(await _ticketService.ChangeTicketStatusAsync(id, status, User));
 }
