@@ -1,3 +1,6 @@
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+
 public class TicketService : ITicketService
 {
     private readonly AppDbContext _context;
