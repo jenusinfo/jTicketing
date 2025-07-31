@@ -27,6 +27,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
+app.UseMiddleware<ErrorHandlerMiddleware>();
+app.UseMiddleware<TenantResolutionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

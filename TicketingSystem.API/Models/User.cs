@@ -5,7 +5,9 @@ public class User
     public string PasswordHash { get; set; } = string.Empty;
 
     public string Role { get; set; } = string.Empty;
-    public int OrganizationId { get; set; }
-    public Organization Organization { get; set; }
-}
 
+    public int OrganizationId { get; set; }
+    public Organization Organization { get; set; } = null!;
+
+    public List<Comment> Comments { get; set; } = new();
+}
