@@ -1,0 +1,20 @@
+## ASP.NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.env
+appsettings.Development.json
+appsettings.*.json
+
+## React + Vite
+node_modules/
+dist/
+.env
+.env.*.local
+.vite/
+.cache/
+.DS_Store
