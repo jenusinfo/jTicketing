@@ -1,3 +1,5 @@
+using System.Security.Claims;
+
 public interface ITicketService
 {
     Task<IEnumerable<object>> GetTicketsAsync(ClaimsPrincipal user);

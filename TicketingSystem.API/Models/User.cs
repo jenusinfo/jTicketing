@@ -8,3 +8,4 @@ public class User
     public int OrganizationId { get; set; }
     public Organization Organization { get; set; }
 }
+
