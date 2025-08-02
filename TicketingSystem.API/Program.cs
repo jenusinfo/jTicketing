@@ -6,6 +6,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddHealthChecks();
 var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection")
                         ?? Environment.GetEnvironmentVariable("DefaultConnection");
 
@@ -45,5 +46,6 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseMiddleware<TenantResolutionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapHealthChecks("/api/health");
 app.MapControllers();
 app.Run();
