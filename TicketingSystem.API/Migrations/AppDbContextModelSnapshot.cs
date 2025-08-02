@@ -153,7 +153,7 @@ namespace TicketingSystem.API.Migrations
                     b.HasOne("TicketingSystem.API.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Ticket");
@@ -206,4 +206,3 @@ namespace TicketingSystem.API.Migrations
         }
     }
 }
-
