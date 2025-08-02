@@ -12,7 +12,9 @@ public class TicketService : ITicketService
 
     public async Task<IEnumerable<object>> GetTicketsAsync(ClaimsPrincipal user)
     {
-        var orgId = int.Parse(user.FindFirst("OrgId").Value);
+        var claim = user.FindFirst("OrgId");
+        if (claim == null) throw new UnauthorizedAccessException("OrgId claim missing");
+        var orgId = int.Parse(claim.Value);
         return await _context.Tickets
             .Where(t => t.OrganizationId == orgId)
             .Select(t => new { t.Id, t.Title, t.Status, t.Priority, t.AssignedToId })
@@ -21,8 +23,12 @@ public class TicketService : ITicketService
 
     public async Task<object> CreateTicketAsync(TicketCreateDto dto, ClaimsPrincipal user)
     {
-        var userId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier).Value);
-        var orgId = int.Parse(user.FindFirst("OrgId").Value);
+        var userClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+        if (userClaim == null) throw new UnauthorizedAccessException("UserId claim missing");
+        var userId = int.Parse(userClaim.Value);
+        var orgClaim = user.FindFirst("OrgId");
+        if (orgClaim == null) throw new UnauthorizedAccessException("OrgId claim missing");
+        var orgId = int.Parse(orgClaim.Value);
         var ticket = new Ticket
         {
             Title = dto.Title,
@@ -39,7 +45,9 @@ public class TicketService : ITicketService
 
     public async Task<object> GetTicketByIdAsync(int id, ClaimsPrincipal user)
     {
-        var orgId = int.Parse(user.FindFirst("OrgId").Value);
+        var claim = user.FindFirst("OrgId");
+        if (claim == null) throw new UnauthorizedAccessException("OrgId claim missing");
+        var orgId = int.Parse(claim.Value);
         return await _context.Tickets
             .Where(t => t.OrganizationId == orgId && t.Id == id)
             .Include(t => t.Comments)
@@ -49,7 +57,9 @@ public class TicketService : ITicketService
 
     public async Task<object> AssignTicketAsync(int ticketId, ClaimsPrincipal user)
     {
-        var userId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier).Value);
+        var claim = user.FindFirst(ClaimTypes.NameIdentifier);
+        if (claim == null) throw new UnauthorizedAccessException("UserId claim missing");
+        var userId = int.Parse(claim.Value);
         var ticket = await _context.Tickets.FindAsync(ticketId);
         if (ticket == null) throw new Exception("Ticket not found");
         ticket.AssignedToId = userId;
