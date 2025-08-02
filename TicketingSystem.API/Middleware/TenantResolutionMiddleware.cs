@@ -11,6 +11,12 @@ public class TenantResolutionMiddleware
 
     public async Task InvokeAsync(HttpContext context, AppDbContext dbContext)
     {
+        if (context.Request.Path.StartsWithSegments("/api/health"))
+        {
+            await _next(context);
+            return;
+        }
+
         var tenantName = context.Request.Headers["X-Tenant"].FirstOrDefault();
         if (string.IsNullOrWhiteSpace(tenantName))
         {
