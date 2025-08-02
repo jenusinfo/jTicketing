@@ -14,4 +14,9 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="web.config" CopyToPublishDirectory="Always" />
+    <Content Update="logs/placeholder.txt" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+
 </Project>
