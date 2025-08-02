@@ -36,7 +36,9 @@ public class TicketCommentsController : ControllerBase
     [HttpPost("{ticketId}")]
     public async Task<IActionResult> AddComment(int ticketId, [FromBody] string message)
     {
-        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+        if (claim == null) return Unauthorized();
+        var userId = int.Parse(claim.Value);
         var comment = new Comment
         {
             Message = message,
