@@ -24,5 +24,11 @@ public class AppDbContext : DbContext
             .WithMany()
             .HasForeignKey(t => t.AssignedToId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Ticket>()
+            .HasOne(t => t.Organization)
+            .WithMany()
+            .HasForeignKey(t => t.OrganizationId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
