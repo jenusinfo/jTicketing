@@ -1,5 +1,7 @@
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using TicketingSystem.API.Models;
+using TicketingSystem.API.Models.DTOs;
 
 public class TicketService : ITicketService
 {
