@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TicketingSystem.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250802071050_RestrictTicketUserDeletes")]
-    partial class RestrictTicketUserDeletes
+    [Migration("20250802072802_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
