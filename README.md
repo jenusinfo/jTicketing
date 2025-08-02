@@ -29,6 +29,10 @@ dotnet ef database update
 dotnet run
 ```
 
+#### Configuration
+The API requires a SQL Server connection string. During development it reads from `appsettings.json`.
+For production deployments, set an environment variable named `ConnectionStrings__DefaultConnection` (or `DefaultConnection`) to supply the connection string at runtime.
+
 ### Frontend (Client)
 ```bash
 cd TicketingSystem.CLI
