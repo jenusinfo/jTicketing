@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TicketingSystem.API.Models.DTOs;
 
 [ApiController]
 [Route("api/tickets")]

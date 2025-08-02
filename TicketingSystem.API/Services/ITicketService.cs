@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using TicketingSystem.API.Models.DTOs;
 
 public interface ITicketService
 {

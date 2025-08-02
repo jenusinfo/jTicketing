@@ -1,1 +1,9 @@
-public class LoginRequest { public string Email { get; set; } public string Password { get; set; } }
+namespace TicketingSystem.API.Models.DTOs
+{
+    public class LoginRequest
+    {
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+    }
+}

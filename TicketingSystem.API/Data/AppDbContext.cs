@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TicketingSystem.API.Models;
 
 public class AppDbContext : DbContext
 {
