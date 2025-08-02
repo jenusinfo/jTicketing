@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace TicketingSystem.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250802072802_InitialCreate")]
+    [Migration("20250802075224_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -156,7 +156,7 @@ namespace TicketingSystem.API.Migrations
                     b.HasOne("TicketingSystem.API.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Ticket");
