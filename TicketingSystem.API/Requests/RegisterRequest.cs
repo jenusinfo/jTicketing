@@ -1,12 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TicketingSystem.API.Requests;
-
+namespace TicketingSystem.API.Requests; 
 public class RegisterRequest
 {
-    public required string Email { get; set; }
-    public required string Password { get; set; }
-    public required string OrgName { get; set; }
-    public required string FullName { get; set; }
-}
+    public string OrgName { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+    public string FullName { get; set; }

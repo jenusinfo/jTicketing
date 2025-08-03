@@ -2,9 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using TicketingSystem.API.Models; // Ensure this is present
 // using TicketingSystem.API.DTOs; // Example, adjust as needed
-using TicketingSystem.API.Requests; // Ensure this is present
 
 public class AuthService : IAuthService
 {

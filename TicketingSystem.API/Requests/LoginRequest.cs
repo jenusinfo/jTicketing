@@ -1,10 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TicketingSystem.API.Requests;
+namespace TicketingSystem.API.Requests; 
 
 public class LoginRequest
 {
-    public required string Email { get; set; }
-    public required string Password { get; set; }
-}
+    public string Email { get; set; }
+    public string Password { get; set; }
