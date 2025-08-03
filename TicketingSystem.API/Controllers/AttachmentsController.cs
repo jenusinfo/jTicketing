@@ -43,7 +43,8 @@ public class AttachmentsController : ControllerBase
         try
         {
             var result = await _attachmentService.DownloadAsync(id);
-            return result ?? NotFound();
+            if (result == null) return NotFound();
+            return result;
         }
         catch (Exception ex)
         {

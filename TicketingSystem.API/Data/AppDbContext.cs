@@ -73,8 +73,20 @@ public class AppDbContext : DbContext
 
         foreach (var entity in modelBuilder.Model.GetEntityTypes())
         {
-            modelBuilder.Entity(entity.ClrType).Property<DateTime>("CreatedAt").HasDefaultValueSql("GETDATE()");
-            modelBuilder.Entity(entity.ClrType).Property<DateTime>("UpdatedAt").HasDefaultValueSql("GETDATE()");
+            var created = entity.FindProperty("CreatedAt");
+            if (created != null)
+            {
+                modelBuilder.Entity(entity.ClrType)
+                    .Property(created.ClrType, "CreatedAt")
+                    .HasDefaultValueSql("GETDATE()");
+            }
+            var updated = entity.FindProperty("UpdatedAt");
+            if (updated != null)
+            {
+                modelBuilder.Entity(entity.ClrType)
+                    .Property(updated.ClrType, "UpdatedAt")
+                    .HasDefaultValueSql("GETDATE()");
+            }
         }
     }
 }

@@ -8,8 +8,4 @@ public class NotificationService : INotificationService
     public Task<bool> MarkAsReadAsync(long id, ClaimsPrincipal user) =>
         Task.FromResult(true);
 
-    Task INotificationService.GetAllAsync(ClaimsPrincipal user)
-    {
-        return GetAllAsync(user);
-    }
 }
