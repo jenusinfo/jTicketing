@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TicketingSystem.CLI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3064cdf1be828473f3c6fb5a11ec0c4aaee2c03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+52801a686018d641bc512800b0d6796aac088bda")]
 [assembly: System.Reflection.AssemblyProductAttribute("TicketingSystem.CLI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TicketingSystem.CLI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\jTicketing\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\services\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\services\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\services\\attachmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\services\\attachmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "INotificationService.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\INotificationService.cs",
-              "RelativeDocumentMoniker": "TicketingSystem.API\\Services\\INotificationService.cs",
-              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\INotificationService.cs",
-              "RelativeToolTip": "TicketingSystem.API\\Services\\INotificationService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Program.cs",
+              "RelativeDocumentMoniker": "TicketingSystem.API\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Program.cs",
+              "RelativeToolTip": "TicketingSystem.API\\Program.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAswGIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T08:35:35.15Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AttachmentService.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\AttachmentService.cs",
-              "RelativeDocumentMoniker": "TicketingSystem.API\\Services\\AttachmentService.cs",
-              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\AttachmentService.cs",
-              "RelativeToolTip": "TicketingSystem.API\\Services\\AttachmentService.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAqwBsAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T08:35:17.24Z",
+              "WhenOpened": "2025-08-03T20:26:23.885Z",
               "EditorCaption": ""
             }
           ]
