@@ -1,97 +1,105 @@
-public class ClientsController : ControllerBase
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+namespace TicketingSystem.API.Controllers
 {
-    private readonly IClientService _clientService;
-    private readonly ILogger<ClientsController> _logger;
-
-    public ClientsController(IClientService clientService, ILogger<ClientsController> logger)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ClientsController : ControllerBase
     {
-        _clientService = clientService;
-    }
+        private readonly IClientService _clientService;
+        private readonly ILogger<ClientsController> _logger;
 
-    [HttpGet]
-    [Authorize]
-    public async Task<ActionResult<IEnumerable<ClientDto>>> GetAll()
-    {
-        try
+        public ClientsController(IClientService clientService, ILogger<ClientsController> logger)
         {
-        var clients = await _clientService.GetAllAsync();
-        return Ok(clients);
+            _clientService = clientService;
+            _logger = logger;
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error in ClientsController");
-            return StatusCode(500, "Internal server error.");
-        }
-    }
 
-    [HttpGet("{id}")]
-    [Authorize]
-    public async Task<ActionResult<ClientDto>> GetById(int id)
-    {
-        try
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<ClientDto>>> GetAll()
         {
-        var client = await _clientService.GetByIdAsync(id);
-        if (client == null) return NotFound();
-        return Ok(client);
+            try
+            {
+                var clients = await _clientService.GetAllAsync();
+                return Ok(clients);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in ClientsController");
+                return StatusCode(500, "Internal server error.");
+            }
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error in ClientsController");
-            return StatusCode(500, "Internal server error.");
-        }
-    }
 
-    [HttpPost]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Create([FromBody] ClientCreateDto dto)
-    {
-        try
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<ActionResult<ClientDto>> GetById(int id)
         {
-        try
-        {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-        var created = await _clientService.CreateAsync(dto);
-        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
-        try
-        {
-    }
+            try
+            {
+                var client = await _clientService.GetByIdAsync(id);
+                if (client == null) return NotFound();
+                return Ok(client);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in ClientsController");
+                return StatusCode(500, "Internal server error.");
+            }
+        }
 
-    [HttpPut("{id}")]
-        try
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create([FromBody] ClientCreateDto dto)
         {
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Update(int id, [FromBody] ClientUpdateDto dto)
-    {
-        try
-        {
-        try
-        {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-        var updated = await _clientService.UpdateAsync(id, dto);
-            if (updated == null) return NotFound();
-            return Ok(updated);
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var created = await _clientService.CreateAsync(dto);
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred in controller.");
+                return StatusCode(500, "Internal server error.");
+            }
         }
-        {
-            _logger.LogError(ex, "An error occurred in controller.");
-            return StatusCode(500, "Internal server error.");
-        }
-    }
 
-    [HttpDelete("{id}")]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        try
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Update(int id, [FromBody] ClientUpdateDto dto)
         {
-        try
-        {
-        var deleted = await _clientService.DeleteAsync(id);
-            if (!deleted) return NotFound();
-            return NoContent();
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var updated = await _clientService.UpdateAsync(id, dto);
+                if (updated == null) return NotFound();
+                return Ok(updated);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred in controller.");
+                return StatusCode(500, "Internal server error.");
+            }
         }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
         {
-            _logger.LogError(ex, "An error occurred in controller.");
-            return StatusCode(500, "Internal server error.");
+            try
+            {
+                var deleted = await _clientService.DeleteAsync(id);
+                if (!deleted) return NotFound();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred in controller.");
+                return StatusCode(500, "Internal server error.");
+            }
         }
     }
 }
