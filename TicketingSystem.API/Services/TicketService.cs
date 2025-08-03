@@ -123,6 +123,64 @@ public class TicketService : ITicketService
         }
     }
 
+    public async Task<TicketDto> UpdateAsync(int id, TicketUpdateDto dto, ClaimsPrincipal user)
+    {
+        try
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+            if (ticket == null)
+                throw new KeyNotFoundException($"Ticket with ID {id} not found.");
+
+            ticket.Title = dto.Title;
+            ticket.Description = dto.Description;
+            ticket.Category = dto.Category;
+            ticket.Subcategory = dto.Subcategory;
+            ticket.Priority = dto.Priority;
+            ticket.Impact = dto.Impact;
+            ticket.Urgency = dto.Urgency;
+            ticket.DueDate = dto.DueDate;
+            ticket.SLA = dto.SLA;
+            ticket.Status = dto.Status;
+            ticket.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+
+            return new TicketDto
+            {
+                Id = ticket.Id,
+                TicketNumber = ticket.TicketNumber,
+                Title = ticket.Title,
+                Priority = ticket.Priority,
+                Status = ticket.Status,
+                CreatedAt = ticket.CreatedAt
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in UpdateAsync");
+            throw;
+        }
+    }
+
+    public async Task<bool> DeleteAsync(int id, ClaimsPrincipal user)
+    {
+        try
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+            if (ticket == null) return false;
+
+            _context.Tickets.Remove(ticket);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in DeleteAsync");
+            throw;
+        }
+    }
+
     public async Task<bool> AssignToAgentAsync(int ticketId, int agentId)
     {
         try
