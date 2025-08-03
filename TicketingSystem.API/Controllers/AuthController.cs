@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using TicketingSystem.API.Requests;
 
 [ApiController]
 [Route("api/[controller]")]
