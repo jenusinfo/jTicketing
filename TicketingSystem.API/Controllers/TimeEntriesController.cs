@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[ApiController]
+[Route("api/[controller]")]
 public class TimeEntriesController : ControllerBase
 {
     private readonly ITimeEntryService _service;
