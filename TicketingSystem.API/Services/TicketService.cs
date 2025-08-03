@@ -59,11 +59,18 @@ public class TicketService : ITicketService
 
     public async Task<object> AssignTicketAsync(int ticketId, ClaimsPrincipal user)
     {
-        var claim = user.FindFirst(ClaimTypes.NameIdentifier);
-        if (claim == null) throw new UnauthorizedAccessException("UserId claim missing");
-        var userId = int.Parse(claim.Value);
-        var ticket = await _context.Tickets.FindAsync(ticketId);
+        var userClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+        if (userClaim == null) throw new UnauthorizedAccessException("UserId claim missing");
+        var userId = int.Parse(userClaim.Value);
+
+        var orgClaim = user.FindFirst("OrgId");
+        if (orgClaim == null) throw new UnauthorizedAccessException("OrgId claim missing");
+        var orgId = int.Parse(orgClaim.Value);
+
+        var ticket = await _context.Tickets.FirstOrDefaultAsync(t => t.Id == ticketId);
         if (ticket == null) throw new Exception("Ticket not found");
+        if (ticket.OrganizationId != orgId) throw new UnauthorizedAccessException("Unauthorized");
+
         ticket.AssignedToId = userId;
         await _context.SaveChangesAsync();
         return ticket;
@@ -71,8 +78,14 @@ public class TicketService : ITicketService
 
     public async Task<object> ChangeTicketStatusAsync(int ticketId, string newStatus, ClaimsPrincipal user)
     {
-        var ticket = await _context.Tickets.FindAsync(ticketId);
+        var orgClaim = user.FindFirst("OrgId");
+        if (orgClaim == null) throw new UnauthorizedAccessException("OrgId claim missing");
+        var orgId = int.Parse(orgClaim.Value);
+
+        var ticket = await _context.Tickets.FirstOrDefaultAsync(t => t.Id == ticketId);
         if (ticket == null) throw new Exception("Ticket not found");
+        if (ticket.OrganizationId != orgId) throw new UnauthorizedAccessException("Unauthorized");
+
         ticket.Status = newStatus;
         await _context.SaveChangesAsync();
         return ticket;
