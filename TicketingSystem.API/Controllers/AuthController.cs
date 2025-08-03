@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using TicketingSystem.API.Requests;
 
 public class AuthController(IAuthService authService) : ControllerBase
 {

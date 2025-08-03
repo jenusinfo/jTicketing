@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity.Data;
+using TicketingSystem.API.Requests;
 
 public interface IAuthService
 {
