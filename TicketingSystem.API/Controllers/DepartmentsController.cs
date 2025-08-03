@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc; // Add this using directive
+using Microsoft.AspNetCore.Authorization; // <-- Add this using directive
 
 public class DepartmentsController : ControllerBase
 {

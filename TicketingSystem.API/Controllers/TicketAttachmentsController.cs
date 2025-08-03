@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc; 
 public class TicketAttachmentsController : ControllerBase
 {
     private readonly ITicketAttachmentService _service;

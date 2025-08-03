@@ -18,12 +18,19 @@ public class TicketService : ITicketService
     }
 
     public async Task<IEnumerable<TicketDto>> GetAllAsync(ClaimsPrincipal user)
+
     {
         try
         {
-            var orgId = int.Parse(user.FindFirst("OrgId")?.Value ?? "0");
+            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                throw new UnauthorizedAccessException("User ID claim is missing.");
 
+            var userId = int.Parse(userIdClaim.Value);
+
+            // If you want to filter by tickets created by the user, use CreatedById
             return await _context.Tickets
+                .Where(t => t.CreatedById == userId)
                 .Select(t => new TicketDto
                 {
                     Id = t.Id,
@@ -47,7 +54,8 @@ public class TicketService : ITicketService
         try
         {
             var ticket = await _context.Tickets.FindAsync(id);
-            if (ticket == null) return null;
+            if (ticket == null)
+                throw new KeyNotFoundException($"Ticket with ID {id} not found.");
 
             return new TicketDto
             {
@@ -70,7 +78,11 @@ public class TicketService : ITicketService
     {
         try
         {
-            var userId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            var userIdClaim = user.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                throw new UnauthorizedAccessException("User ID claim is missing.");
+
+            var userId = int.Parse(userIdClaim.Value);
 
             var ticket = new Ticket
             {
@@ -87,7 +99,8 @@ public class TicketService : ITicketService
                 ClientId = dto.ClientId,
                 ProjectId = dto.ProjectId,
                 CreatedById = userId,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                Status = "New"
             };
 
             _context.Tickets.Add(ticket);

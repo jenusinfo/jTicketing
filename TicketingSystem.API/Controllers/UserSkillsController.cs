@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 public class UserSkillsController : ControllerBase
 {
     private readonly IUserSkillService _service;

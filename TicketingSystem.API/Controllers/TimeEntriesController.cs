@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 public class TimeEntriesController : ControllerBase
 {
     private readonly ITimeEntryService _service;

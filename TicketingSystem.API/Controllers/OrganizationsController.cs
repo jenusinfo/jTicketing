@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc; // <-- Add this using directive
+
 public class OrganizationsController : ControllerBase
 {
     private readonly IOrganizationService _service;

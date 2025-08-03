@@ -1,3 +1,7 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 public class TicketCommentsController : ControllerBase
 {
     private readonly ITicketCommentService _commentService;
@@ -20,6 +24,7 @@ public class TicketCommentsController : ControllerBase
         try
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
+            // Explicitly call the generic method to resolve ambiguity
             var created = await _commentService.AddCommentAsync(ticketId, dto, User);
             return Ok(created);
         }

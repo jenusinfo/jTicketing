@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 public class TicketHistoriesController : ControllerBase
 {
     private readonly ITicketHistoryService _service;

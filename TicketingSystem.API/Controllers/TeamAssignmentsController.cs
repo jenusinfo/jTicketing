@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc; // <-- Add this using directive
 public class TeamAssignmentsController : ControllerBase
 {
     private readonly ITeamAssignmentService _service;
