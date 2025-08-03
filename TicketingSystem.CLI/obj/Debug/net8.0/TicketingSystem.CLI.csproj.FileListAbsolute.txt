@@ -1,0 +1,15 @@
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\bin\Debug\net8.0\TicketingSystem.CLI.exe
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\bin\Debug\net8.0\TicketingSystem.CLI.deps.json
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\bin\Debug\net8.0\TicketingSystem.CLI.runtimeconfig.json
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\bin\Debug\net8.0\TicketingSystem.CLI.dll
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\bin\Debug\net8.0\TicketingSystem.CLI.pdb
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.AssemblyInfoInputs.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.AssemblyInfo.cs
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.csproj.CoreCompileInputs.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.sourcelink.json
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.dll
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\refint\TicketingSystem.CLI.dll
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.pdb
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\TicketingSystem.CLI.genruntimeconfig.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.CLI\obj\Debug\net8.0\ref\TicketingSystem.CLI.dll

@@ -1,7 +1,8 @@
-namespace TicketingSystem.API.Models
-{
-    public class Comment
-    {
+using System;
+using System.ComponentModel.DataAnnotations;
+
+public class Comment
+ {
         public int Id { get; set; }
 
         public string Message { get; set; } = string.Empty;
@@ -15,5 +16,4 @@ namespace TicketingSystem.API.Models
         public int UserId { get; set; }
 
         public User User { get; set; }
-    }
 }

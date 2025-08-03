@@ -1,11 +1,7 @@
-using System.Security.Claims;
-using TicketingSystem.API.Models.DTOs;
-
 public interface ITicketService
 {
-    Task<IEnumerable<object>> GetTicketsAsync(ClaimsPrincipal user);
-    Task<object> CreateTicketAsync(TicketCreateDto dto, ClaimsPrincipal user);
-    Task<object> GetTicketByIdAsync(int id, ClaimsPrincipal user);
-    Task<object> AssignTicketAsync(int ticketId, ClaimsPrincipal user);
-    Task<object> ChangeTicketStatusAsync(int ticketId, string newStatus, ClaimsPrincipal user);
+    Task<IEnumerable<TicketDto>> GetAllAsync(ClaimsPrincipal user);
+    Task<TicketDto> GetByIdAsync(int id, ClaimsPrincipal user);
+    Task<TicketDto> CreateAsync(TicketCreateDto dto, ClaimsPrincipal user);
+    Task<bool> AssignToAgentAsync(int ticketId, int agentId);
 }

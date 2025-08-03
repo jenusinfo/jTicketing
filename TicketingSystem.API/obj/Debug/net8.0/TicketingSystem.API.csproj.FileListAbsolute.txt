@@ -1,0 +1,8 @@
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.csproj.AssemblyReference.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.AssemblyInfoInputs.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.AssemblyInfo.cs
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.csproj.CoreCompileInputs.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.sourcelink.json

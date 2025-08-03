@@ -1,80 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using TicketingSystem.API.Models;
-using TicketingSystem.API.Models.DTOs;
 
 public class TicketService : ITicketService
 {
     private readonly AppDbContext _context;
+    private readonly ILogger<TicketService> _logger;
 
-    public TicketService(AppDbContext context)
+    public TicketService(AppDbContext context, ILogger<TicketService> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
-    public async Task<IEnumerable<object>> GetTicketsAsync(ClaimsPrincipal user)
+    public async Task<IEnumerable<TicketDto>> GetAllAsync(ClaimsPrincipal user)
     {
-        var claim = user.FindFirst("OrgId");
-        if (claim == null) throw new UnauthorizedAccessException("OrgId claim missing");
-        var orgId = int.Parse(claim.Value);
-        return await _context.Tickets
-            .Where(t => t.OrganizationId == orgId)
-            .Select(t => new { t.Id, t.Title, t.Status, t.Priority, t.AssignedToId })
-            .ToListAsync();
-    }
-
-    public async Task<object> CreateTicketAsync(TicketCreateDto dto, ClaimsPrincipal user)
-    {
-        var userClaim = user.FindFirst(ClaimTypes.NameIdentifier);
-        if (userClaim == null) throw new UnauthorizedAccessException("UserId claim missing");
-        var userId = int.Parse(userClaim.Value);
-        var orgClaim = user.FindFirst("OrgId");
-        if (orgClaim == null) throw new UnauthorizedAccessException("OrgId claim missing");
-        var orgId = int.Parse(orgClaim.Value);
-        var ticket = new Ticket
+        try
         {
-            Title = dto.Title,
-            Description = dto.Description,
-            CreatedById = userId,
-            OrganizationId = orgId,
-            Status = "Open",
-            Priority = "Medium"
-        };
-        _context.Tickets.Add(ticket);
-        await _context.SaveChangesAsync();
-        return ticket;
+            var orgId = int.Parse(user.FindFirst("OrgId")?.Value ?? "0");
+
+            return await _context.Tickets
+                .Select(t => new TicketDto
+                {
+                    Id = t.Id,
+                    TicketNumber = t.TicketNumber,
+                    Title = t.Title,
+                    Priority = t.Priority,
+                    Status = t.Status,
+                    CreatedAt = t.CreatedAt
+                })
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in GetAllAsync");
+            throw;
+        }
     }
 
-    public async Task<object> GetTicketByIdAsync(int id, ClaimsPrincipal user)
+    public async Task<TicketDto> GetByIdAsync(int id, ClaimsPrincipal user)
     {
-        var claim = user.FindFirst("OrgId");
-        if (claim == null) throw new UnauthorizedAccessException("OrgId claim missing");
-        var orgId = int.Parse(claim.Value);
-        return await _context.Tickets
-            .Where(t => t.OrganizationId == orgId && t.Id == id)
-            .Include(t => t.Comments)
-            .ThenInclude(c => c.User)
-            .FirstOrDefaultAsync();
+        try
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+            if (ticket == null) return null;
+
+            return new TicketDto
+            {
+                Id = ticket.Id,
+                TicketNumber = ticket.TicketNumber,
+                Title = ticket.Title,
+                Priority = ticket.Priority,
+                Status = ticket.Status,
+                CreatedAt = ticket.CreatedAt
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in GetByIdAsync");
+            throw;
+        }
     }
 
-    public async Task<object> AssignTicketAsync(int ticketId, ClaimsPrincipal user)
+    public async Task<TicketDto> CreateAsync(TicketCreateDto dto, ClaimsPrincipal user)
     {
-        var claim = user.FindFirst(ClaimTypes.NameIdentifier);
-        if (claim == null) throw new UnauthorizedAccessException("UserId claim missing");
-        var userId = int.Parse(claim.Value);
-        var ticket = await _context.Tickets.FindAsync(ticketId);
-        if (ticket == null) throw new Exception("Ticket not found");
-        ticket.AssignedToId = userId;
-        await _context.SaveChangesAsync();
-        return ticket;
+        try
+        {
+            var userId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+
+            var ticket = new Ticket
+            {
+                TicketNumber = $"TCKT-{DateTime.UtcNow.Ticks}",
+                Title = dto.Title,
+                Description = dto.Description,
+                Category = dto.Category,
+                Subcategory = dto.Subcategory,
+                Priority = dto.Priority,
+                Impact = dto.Impact,
+                Urgency = dto.Urgency,
+                DueDate = dto.DueDate,
+                SLA = dto.SLA,
+                ClientId = dto.ClientId,
+                ProjectId = dto.ProjectId,
+                CreatedById = userId,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.Tickets.Add(ticket);
+            await _context.SaveChangesAsync();
+
+            return new TicketDto
+            {
+                Id = ticket.Id,
+                TicketNumber = ticket.TicketNumber,
+                Title = ticket.Title,
+                Priority = ticket.Priority,
+                Status = ticket.Status,
+                CreatedAt = ticket.CreatedAt
+            };
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in CreateAsync");
+            throw;
+        }
     }
 
-    public async Task<object> ChangeTicketStatusAsync(int ticketId, string newStatus, ClaimsPrincipal user)
+    public async Task<bool> AssignToAgentAsync(int ticketId, int agentId)
     {
-        var ticket = await _context.Tickets.FindAsync(ticketId);
-        if (ticket == null) throw new Exception("Ticket not found");
-        ticket.Status = newStatus;
-        await _context.SaveChangesAsync();
-        return ticket;
+        try
+        {
+            var ticket = await _context.Tickets.FindAsync(ticketId);
+            if (ticket == null) return false;
+
+            ticket.AssignedToUserId = agentId;
+            ticket.UpdatedAt = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in AssignToAgentAsync");
+            throw;
+        }
     }
 }

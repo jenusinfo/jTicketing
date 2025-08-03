@@ -1,53 +1,32 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using TicketingSystem.API.Models;
-
-[ApiController]
-[Route("api/comments")]
-[Authorize]
 public class TicketCommentsController : ControllerBase
 {
-    private readonly AppDbContext _context;
+    private readonly ITicketCommentService _commentService;
+    private readonly ILogger<TicketCommentsController> _logger;
 
-    public TicketCommentsController(AppDbContext context)
+    public TicketCommentsController(ITicketCommentService commentService, ILogger<TicketCommentsController> logger)
     {
-        _context = context;
+        _commentService = commentService;
+        _logger = logger;
     }
 
-    [HttpGet("{ticketId}")]
-    public async Task<IActionResult> GetComments(int ticketId)
-    {
-        var comments = await _context.Comments
-            .Where(c => c.TicketId == ticketId)
-            .OrderBy(c => c.CreatedAt)
-            .Select(c => new {
-                c.Id,
-                c.Message,
-                c.CreatedAt,
-                Author = c.User.Email
-            })
-            .ToListAsync();
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> Get(int ticketId) => Ok(await _commentService.GetByTicketIdAsync(ticketId));
 
-        return Ok(comments);
-    }
-
-    [HttpPost("{ticketId}")]
-    public async Task<IActionResult> AddComment(int ticketId, [FromBody] string message)
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Add(int ticketId, [FromBody] TicketCommentCreateDto dto)
     {
-        var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-        if (claim == null) return Unauthorized();
-        var userId = int.Parse(claim.Value);
-        var comment = new Comment
+        try
         {
-            Message = message,
-            TicketId = ticketId,
-            UserId = userId
-        };
-        _context.Comments.Add(comment);
-        await _context.SaveChangesAsync();
-
-        return Ok(comment);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var created = await _commentService.AddCommentAsync(ticketId, dto, User);
+            return Ok(created);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in TicketCommentsController");
+            return StatusCode(500, "Internal server error.");
+        }
     }
 }

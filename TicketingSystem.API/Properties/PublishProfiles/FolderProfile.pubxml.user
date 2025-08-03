@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- https://go.microsoft.com/fwlink/?LinkID=208121. -->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2025-08-02T09:01:25.4470759Z||;True|2025-08-02T11:46:06.5133494+03:00||;True|2025-08-02T10:40:38.0164544+03:00||;True|2025-08-02T10:20:29.4301527+03:00||;True|2025-08-02T09:56:37.8425469+03:00||;True|2025-08-02T09:25:14.3122960+03:00||;True|2025-08-02T07:29:51.6540713+03:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

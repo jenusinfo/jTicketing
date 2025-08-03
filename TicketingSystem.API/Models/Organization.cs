@@ -1,9 +1,8 @@
-namespace TicketingSystem.API.Models
-{
-    public class Organization
-    {
-        public int Id { get; set; }
+using System;
+using System.ComponentModel.DataAnnotations;
 
-        public string Name { get; set; } = string.Empty;
-    }
+public class Organization
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
