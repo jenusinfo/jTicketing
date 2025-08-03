@@ -1,8 +1,10 @@
 using TicketingSystem.API.Requests;
 
-public interface IAuthService
+namespace TicketingSystem.API.Services
 {
-    Task<string> RegisterAsync(RegisterRequest dto);
-    Task<string> LoginAsync(LoginRequest dto);
-
+    public interface IAuthService
+    {
+        Task<string> RegisterAsync(RegisterRequest dto);
+        Task<string> LoginAsync(LoginRequest dto);
+    }
 }
