@@ -26,14 +26,14 @@ public class AttachmentService : IAttachmentService
     }
 
     public async Task<FileStreamResult?> DownloadAsync(int attachmentId)
-
     {
         var filePath = Path.Combine("uploads", $"attachment_{attachmentId}.dat");
 
         if (!File.Exists(filePath))
             return null;
 
-        var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        // Use Task.Run to make file IO asynchronous
+        var stream = await Task.Run(() => new FileStream(filePath, FileMode.Open, FileAccess.Read));
         var contentType = "application/octet-stream";
 
         return new FileStreamResult(stream, contentType)

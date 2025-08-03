@@ -1,3 +1,5 @@
+using System.Security.Claims;
+
 public class TicketCommentService : ITicketCommentService
 {
     public Task<IEnumerable<TicketCommentDto>> GetByTicketIdAsync(int ticketId) =>

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\jTicketing\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|c:\\users\\user\\source\\repos\\jticketing\\ticketingsystem.api\\services\\attachmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|TicketingSystem.API\\TicketingSystem.API.csproj|solutionrelative:ticketingsystem.api\\services\\attachmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IAuthService.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\IAuthService.cs",
-              "RelativeDocumentMoniker": "TicketingSystem.API\\Services\\IAuthService.cs",
-              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\IAuthService.cs",
-              "RelativeToolTip": "TicketingSystem.API\\Services\\IAuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Program.cs",
+              "RelativeDocumentMoniker": "TicketingSystem.API\\Program.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Program.cs",
+              "RelativeToolTip": "TicketingSystem.API\\Program.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAuwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T08:06:46.266Z",
+              "WhenOpened": "2025-08-03T08:36:12.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "TicketingSystem.API\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "TicketingSystem.API\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AttachmentService.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\AttachmentService.cs",
+              "RelativeDocumentMoniker": "TicketingSystem.API\\Services\\AttachmentService.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\jTicketing\\TicketingSystem.API\\Services\\AttachmentService.cs",
+              "RelativeToolTip": "TicketingSystem.API\\Services\\AttachmentService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA1wB8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-03T08:04:14.703Z",
+              "WhenOpened": "2025-08-03T08:35:17.24Z",
               "EditorCaption": ""
             }
           ]

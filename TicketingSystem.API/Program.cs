@@ -1,15 +1,18 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models; // Add this using directive
-using Swashbuckle.AspNetCore.SwaggerGen; // Optional, but sometimes needed
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "TicketingSystem API", Version = "v1" });
@@ -20,9 +23,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 string jwtKeyConfigKey = "Jwt:Key";
 
-var key = Encoding.ASCII.GetBytes(builder.Configuration[jwtKeyConfigKey]);
-using Swashbuckle.AspNetCore.SwaggerUI; // Add this using directive
-using Swashbuckle.AspNetCore.Swagger;   // Add this using directive
+var key = Encoding.ASCII.GetBytes(jwtKeyConfigKey);
+    
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

@@ -6,3 +6,4 @@ C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\Ticke
 C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.csproj.CoreCompileInputs.cache
 C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.sourcelink.json
+C:\Users\USER\Source\Repos\jTicketing\TicketingSystem.API\obj\Debug\net8.0\TicketingSystem.API.MvcApplicationPartsAssemblyInfo.cs
