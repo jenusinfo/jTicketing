@@ -1,6 +1,8 @@
-using Microsoft.AspNetCore.Mvc; // Add this using directive
-using Microsoft.AspNetCore.Authorization; // <-- Add this using directive
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
+[ApiController]
+[Route("api/[controller]")]
 public class DepartmentsController : ControllerBase
 {
     private readonly IDepartmentService _service;

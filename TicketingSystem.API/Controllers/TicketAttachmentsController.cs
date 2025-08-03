@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("api/[controller]")]
 public class TicketAttachmentsController : ControllerBase
 {
     private readonly ITicketAttachmentService _service;
