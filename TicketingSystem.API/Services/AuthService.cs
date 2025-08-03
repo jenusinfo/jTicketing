@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using TicketingSystem.API.Requests;
+// using TicketingSystem.API.DTOs; // Example, adjust as needed
 
 namespace TicketingSystem.API.Services
 {
