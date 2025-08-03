@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc; // <-- Add this using directive
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("api/[controller]")]
 public class SlaPoliciesController : ControllerBase
 {
     private readonly ISlaPolicyService _service;
