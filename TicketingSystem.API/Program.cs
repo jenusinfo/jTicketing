@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection")
+                        ?? Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")
                         ?? Environment.GetEnvironmentVariable("DefaultConnection");
 
 if (string.IsNullOrWhiteSpace(defaultConnection))
