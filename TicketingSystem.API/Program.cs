@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models; // Add this using directive
+using Swashbuckle.AspNetCore.SwaggerGen; // Optional, but sometimes needed
 using System.Text;
-using TicketingSystem.API.Data;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +18,11 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
+string jwtKeyConfigKey = "Jwt:Key";
+
+var key = Encoding.ASCII.GetBytes(builder.Configuration[jwtKeyConfigKey]);
+using Swashbuckle.AspNetCore.SwaggerUI; // Add this using directive
+using Swashbuckle.AspNetCore.Swagger;   // Add this using directive
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

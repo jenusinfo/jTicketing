@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TicketingSystem.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+57aad849c415f79ac3648f836609f00fac329ea7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20d8ded5544e3ae5f8ccf24659cf32b64400fb7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("TicketingSystem.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TicketingSystem.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

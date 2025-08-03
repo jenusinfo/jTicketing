@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Security.Claims;
-using System.IO; // Ensure this is included
+using System.Threading.Tasks;
 
 public class AttachmentService : IAttachmentService
 {
     public async Task<AttachmentDto> UploadAsync(int ticketId, IFormFile file, ClaimsPrincipal user)
     {
         if (file == null || file.Length == 0)
-        {
             throw new ArgumentException("File cannot be null or empty", nameof(file));
-        }
 
         var filePath = Path.Combine("uploads", file.FileName);
 
@@ -18,21 +17,30 @@ public class AttachmentService : IAttachmentService
             await file.CopyToAsync(stream);
         }
 
-        var attachmentDto = new AttachmentDto
+        return new AttachmentDto
         {
             TicketId = ticketId,
             FileName = file.FileName,
-            ContentType = file.ContentType,
-            // Add other properties as needed
+            ContentType = file.ContentType
         };
-
-        return attachmentDto;
     }
 
     public async Task<FileStreamResult?> DownloadAsync(int attachmentId)
+
     {
-        // Dummy implementation for interface compliance
-        // Replace with actual logic as needed
-        return await Task.FromResult<FileStreamResult?>(null);
+        var filePath = Path.Combine("uploads", $"attachment_{attachmentId}.dat");
+
+        if (!File.Exists(filePath))
+            return null;
+
+        var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        var contentType = "application/octet-stream";
+
+        return new FileStreamResult(stream, contentType)
+        {
+            FileDownloadName = Path.GetFileName(filePath)
+        };
     }
 }
+
+
